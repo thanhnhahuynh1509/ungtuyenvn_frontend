@@ -1,0 +1,16 @@
+.Body-container {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+}
+
+.Body-participants {
+  position: sticky;
+  top: 100px;
+  left: 0;
+  height: 100vh;
+  overflow-y: auto;
+  background-color: #fff;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+}

@@ -1,0 +1,76 @@
+.Header {
+  background-color: #333;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+
+.Header-container {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.Header-content {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  padding: 10px 0;
+  width: 100%;
+}
+
+.Header-logo {
+  font-size: 24px;
+  color: var(--primary-color);
+  cursor: pointer;
+}
+
+.Header-search-box {
+  display: flex;
+  align-items: stretch;
+  gap: 10px;
+}
+
+.Header-search-box input,
+.Header-search-box select {
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  padding: 10px 10px;
+}
+
+.Header-search-box input {
+  width: 300px;
+}
+
+.Header-features {
+  display: flex;
+  align-items: stretch;
+}
+
+.Header-user {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.Header-avatar {
+  cursor: pointer;
+}
+
+.Header-avatar img {
+  width: 50px;
+  height: 50px;
+  object-fit: contain;
+  border-radius: 50%;
+  background-color: #fff;
+}
+
+.Header-message .button {
+  padding: 8px 20px;
+}

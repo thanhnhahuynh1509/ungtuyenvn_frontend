@@ -1,13 +1,166 @@
-body {
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+:root {
+  --primary-color: #f76916;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap");
+
+html {
+  font-family: "Nunito", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  overflow-x: hidden;
+  background-color: #eee;
+}
+
+body.modal-open {
+  height: 100vh;
+  overflow-y: hidden;
+}
+
+button,
+select,
+input,
+form {
+  font-size: inherit;
+  font-family: inherit;
+  font-weight: inherit;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+ul {
+  padding-left: 19px;
+}
+
+section {
+  margin: 60px 0px;
+}
+
+.container {
+  max-width: 1400px;
+  margin: auto;
+}
+
+.button {
+  position: relative;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  background-color: hsl(0, 0%, 100%);
+  padding: 0 20px;
+  font-weight: 600;
+  border-bottom: 4px solid hsl(0, 0%, 90%);
+  cursor: pointer;
+  transition: 0.25s;
+}
+/* 
+.button::after {
+  content: "";
+  top: 0;
+  left: 0;
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  transition: 0.25s;
+}
+
+.button:hover::after {
+  background-color: rgba(0, 0, 0, 0.1);
+} */
+
+.button:hover {
+  transform: translateY(-3px);
+}
+
+.button-primary {
+  color: #fff !important;
+  background-color: hsl(22, 93%, 53%) !important;
+  border-bottom: 4px solid hsl(22, 93%, 43%) !important;
+}
+
+.button-blue {
+  color: #fff !important;
+  background-color: hsl(199, 70%, 55%) !important;
+  border-bottom: 4px solid hsl(199, 70%, 43%) !important;
+}
+
+.button-red {
+  color: #fff !important;
+  background-color: hsl(5, 70%, 55%) !important;
+  border-bottom: 4px solid hsl(5, 70%, 43%) !important;
+}
+
+.button-black {
+  color: #fff !important;
+  background-color: hsl(12, 5%, 19%) !important;
+  border-bottom: 4px solid hsl(12, 5%, 9%) !important;
+}
+
+.button-green {
+  color: #fff !important;
+  background-color: hsl(138, 70%, 55%) !important;
+  border-bottom: 4px solid hsl(138, 70%, 43%) !important;
+}
+
+.card-small {
+  border: 1px solid #ccc;
+  padding: 3px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.card-small:hover {
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+}
+
+.form-group {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.form-group select,
+.form-group input {
+  width: 100%;
+  border: 0.5px solid rgba(0, 0, 0, 0.2);
+  outline: none;
+  border-radius: 4px;
+  padding: 10px;
+}
+.form-group select {
+  padding: 10px 30px 10px 10px;
+}
+
+.form-group label {
+  font-size: 14px;
+}
+
+.contain-form-group {
+  display: flex;
+  gap: 20px;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+a {
+  text-decoration: none;
+}
+
+.mv-20 {
+  margin: 20px 0px;
 }

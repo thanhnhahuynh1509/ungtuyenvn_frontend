@@ -1,0 +1,7 @@
+.Tabs-title {
+  padding: 10px 20px;
+  border: 1px solid #333;
+  display: inline-block;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
