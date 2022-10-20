@@ -3,6 +3,11 @@ import { API_URL, getConfig } from "./common-api";
 
 const NGUOI_DUNG = "/api/nguoi_dung";
 
+export const layTatCaNguoiDung = async () => {
+  const response = await axios.get(API_URL + NGUOI_DUNG);
+  return response.data;
+};
+
 export const capNhapNguoiDung = async (data) => {
   const response = await axios.put(
     API_URL + NGUOI_DUNG + "/" + data.id,

@@ -8,8 +8,8 @@ function ProjectCard(props) {
   const { duAn } = props;
 
   const xuLyXemThem = () => {
-    props.openModalUpdate();
-    props.updateCurrentProject();
+    if (props.openModalUpdate) props.openModalUpdate();
+    if (props.updateCurrentProject) props.updateCurrentProject();
   };
 
   return (
@@ -29,7 +29,10 @@ function ProjectCard(props) {
           <button
             className="button button-blue"
             style={{ padding: "10px" }}
-            onClick={xuLyXemThem}
+            onClick={() => {
+              xuLyXemThem();
+              props.onAddClick();
+            }}
           >
             Xem thêm
           </button>
