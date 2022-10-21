@@ -17,6 +17,15 @@ export const capNhapNguoiDung = async (data) => {
   return response.data;
 };
 
+export const capNhatCV = async (id, data) => {
+  const response = await axios.post(
+    API_URL + NGUOI_DUNG + "/" + id + "/cv",
+    data,
+    getConfig()
+  );
+  return response.data;
+};
+
 export const layNguoiDung = async (token) => {
   const response = await axios.post(
     API_URL + NGUOI_DUNG + "/get_by_token",

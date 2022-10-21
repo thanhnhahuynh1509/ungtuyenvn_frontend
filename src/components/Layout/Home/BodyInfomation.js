@@ -5,12 +5,26 @@ import { useState } from "react";
 import { API_URL } from "./../../../api/common-api";
 import { avatar_nguoi_dung, project_image } from "./../../../utils/image-utils";
 import ProjectCard from "./../../UI/ProjectCard";
+import { useSelector } from "react-redux";
+import { selectNguoiDung } from "./../../../store/nguoi-dung-slice";
+import { selectStomp } from "../../../store/stomp-slice";
 
 function BodyInfomation(props) {
   const [openModal, setOpenModal] = useState(false);
   const [openModalProject, setOpenModalProject] = useState(false);
   const [currentProject, setCurrentProject] = useState(null);
   const { user } = props;
+
+  const nguoiDung = useSelector(selectNguoiDung);
+  const stomp = useSelector(selectStomp);
+
+  const handleChieuMo = () => {
+    if (!nguoiDung) {
+      window.location.href = "/sign_in";
+    } else {
+      stomp.send("/app/" + nguoiDung.id + "/" + user.id);
+    }
+  };
   return (
     <>
       {user && (
@@ -24,15 +38,33 @@ function BodyInfomation(props) {
               <p className="Body-infomation-city">
                 <i className="fa-regular fa-compass"></i> {user.thanhPho}
               </p>
+              {(!nguoiDung || nguoiDung.id !== user.id) && (
+                <div className="Body-infomation-features">
+                  <button
+                    className=" button Body-infomation-button button-primary"
+                    onClick={handleChieuMo}
+                  >
+                    <i className="fa-regular fa-bell"></i> Chiêu mộ
+                  </button>
+                  <button className="button">
+                    <i className="fa-regular fa-thumbs-up"></i>
+                  </button>
+                </div>
+              )}
+              {user.cv && (
+                <>
+                  <div className="seperate"></div>
 
-              <div className="Body-infomation-features">
-                <button className=" button Body-infomation-button button-primary">
-                  <i className="fa-solid fa-message"></i> Liên hệ
-                </button>
-                <button className="button">
-                  <i className="fa-regular fa-thumbs-up"></i>
-                </button>
-              </div>
+                  <a
+                    style={{ margin: "10px 0px", display: "inline-block" }}
+                    href={API_URL + "/" + user.cv}
+                    download
+                    target={"_blank"}
+                  >
+                    CV của tôi
+                  </a>
+                </>
+              )}
               <div className="seperate"></div>
             </div>
 
@@ -186,14 +218,16 @@ function BodyInfomation(props) {
                   <i className="fa-regular fa-compass"></i> {user.thanhPho}
                 </p>
 
-                <div className="Body-infomation-features">
-                  <button className=" button Body-infomation-button button-primary">
-                    <i className="fa-solid fa-message"></i> Liên hệ
-                  </button>
-                  <button className="button">
-                    <i className="fa-regular fa-thumbs-up"></i>
-                  </button>
-                </div>
+                {(!nguoiDung || nguoiDung.id !== user.id) && (
+                  <div className="Body-infomation-features">
+                    <button className=" button Body-infomation-button button-primary">
+                      <i className="fa-regular fa-bell"></i> Chiêu mộ
+                    </button>
+                    <button className="button">
+                      <i className="fa-regular fa-thumbs-up"></i>
+                    </button>
+                  </div>
+                )}
                 <div className="seperate"></div>
               </div>
 
@@ -206,6 +240,21 @@ function BodyInfomation(props) {
                   );
                 })}
               </ul>
+
+              {user.cv && (
+                <>
+                  <div className="seperate"></div>
+
+                  <a
+                    style={{ margin: "10px 0px", display: "inline-block" }}
+                    href={API_URL + "/" + user.cv}
+                    download
+                    target={"_blank"}
+                  >
+                    CV của tôi
+                  </a>
+                </>
+              )}
 
               <div className="seperate"></div>
 

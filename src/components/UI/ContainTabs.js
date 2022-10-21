@@ -37,6 +37,7 @@ function ContainTabs(props) {
   const [ten, setTen] = useState(nguoiDung.ten);
   const [ho, setHo] = useState(nguoiDung.ho);
   const [thanhPho, setThanhPho] = useState(nguoiDung.thanhPho);
+  const [trangThai, setTrangThai] = useState(nguoiDung.trangThai);
   const [loaiNguoiDung, setLoaiNguoiDung] = useState(
     nguoiDung.loaiNguoiDung.id
   );
@@ -99,6 +100,7 @@ function ContainTabs(props) {
       thanhPho,
       tieuDeUngTuyen,
       loaiNguoiDung: { id: loaiNguoiDung },
+      trangThai,
     };
 
     await capNhat(user);
@@ -295,6 +297,21 @@ function ContainTabs(props) {
                   <option value="Hà Nội">Hà Nội</option>
                   <option value="Đà Nẵng">Đà Nẵng</option>
                   <option value="Khác">Khác</option>
+                </select>
+              </div>
+
+              <div className="form-group">
+                <label htmlFor="position">Trạng thái</label>
+                <select
+                  name=""
+                  id="position"
+                  style={{ cursor: "pointer" }}
+                  value={trangThai}
+                  onChange={(e) => setTrangThai(e.target.value)}
+                  required
+                >
+                  <option value={"Hoạt động"}>Hoạt động</option>
+                  <option value={"Không hoạt động"}>Không hoạt động</option>
                 </select>
               </div>
 

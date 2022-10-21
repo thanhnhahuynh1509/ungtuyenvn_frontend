@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const nguoiDungSlice = createSlice({
   name: "nguoiDung",
-  initialState: { data: { ...JSON.parse(localStorage.getItem("nguoi-dung")) } },
+  initialState: { data: null },
   reducers: {
     capNhatNguoiDungRD(state, action) {
       state.data = action.payload;

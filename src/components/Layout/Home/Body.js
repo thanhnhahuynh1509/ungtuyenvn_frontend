@@ -5,16 +5,8 @@ import "./css/Body.css";
 import { layTatCaNguoiDung } from "./../../../api/nguoi-dung-api";
 
 function Body(props) {
-  const [nguoiDungs, setNguoiDungs] = useState([]);
+  const { nguoiDungs, setNguoiDungs } = props;
   const [currentUser, setCurrentUser] = useState(null);
-
-  useEffect(() => {
-    const init = async () => {
-      setNguoiDungs(await layTatCaNguoiDung());
-    };
-
-    init();
-  }, []);
 
   return (
     <section>
