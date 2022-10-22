@@ -5,15 +5,30 @@ import { useState } from "react";
 import { API_URL } from "./../../../api/common-api";
 import { avatar_nguoi_dung, project_image } from "./../../../utils/image-utils";
 import ProjectCard from "./../../UI/ProjectCard";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectNguoiDung } from "./../../../store/nguoi-dung-slice";
 import { selectStomp } from "../../../store/stomp-slice";
+import ReportModal from "../../UI/ReportModal";
+import { updateModal } from "../../../store/modal-slice";
 
 function BodyInfomation(props) {
   const [openModal, setOpenModal] = useState(false);
   const [openModalProject, setOpenModalProject] = useState(false);
   const [currentProject, setCurrentProject] = useState(null);
+  const [openReport, setOpenReport] = useState(false);
+  const dispatch = useDispatch();
   const { user } = props;
+
+  const modal = {
+    title: "Bạn đã chiêu mộ người dùng",
+    message: "Chiêu mộ thành công và đợi người dùng trả lời bạn qua email!",
+    icon: (
+      <i style={{ color: "green" }} className="fa-regular fa-circle-check"></i>
+    ),
+    hide: false,
+    handleAccept: () => {},
+    handleCancel: () => {},
+  };
 
   const nguoiDung = useSelector(selectNguoiDung);
   const stomp = useSelector(selectStomp);
@@ -23,6 +38,7 @@ function BodyInfomation(props) {
       window.location.href = "/sign_in";
     } else {
       stomp.send("/app/" + nguoiDung.id + "/" + user.id);
+      dispatch(updateModal(modal));
     }
   };
   return (
@@ -46,8 +62,11 @@ function BodyInfomation(props) {
                   >
                     <i className="fa-regular fa-bell"></i> Chiêu mộ
                   </button>
-                  <button className="button">
-                    <i className="fa-regular fa-thumbs-up"></i>
+                  <button
+                    className="button"
+                    onClick={() => setOpenReport(true)}
+                  >
+                    <i className="fa-regular fa-flag"></i>
                   </button>
                 </div>
               )}
@@ -220,11 +239,17 @@ function BodyInfomation(props) {
 
                 {(!nguoiDung || nguoiDung.id !== user.id) && (
                   <div className="Body-infomation-features">
-                    <button className=" button Body-infomation-button button-primary">
+                    <button
+                      className=" button Body-infomation-button button-primary"
+                      onClick={handleChieuMo}
+                    >
                       <i className="fa-regular fa-bell"></i> Chiêu mộ
                     </button>
-                    <button className="button">
-                      <i className="fa-regular fa-thumbs-up"></i>
+                    <button
+                      className="button"
+                      onClick={() => setOpenReport(true)}
+                    >
+                      <i className="fa-regular fa-flag"></i>
                     </button>
                   </div>
                 )}
@@ -438,6 +463,14 @@ function BodyInfomation(props) {
           </>
         )}
       </ModalBig>
+
+      {user && (
+        <ReportModal
+          userId={user.id}
+          open={openReport}
+          setOpen={setOpenReport}
+        />
+      )}
     </>
   );
 }
