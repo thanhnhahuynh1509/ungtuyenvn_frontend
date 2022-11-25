@@ -1,0 +1,53 @@
+.ModalChat {
+  display: none;
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.ModalChat .backdrop-chat {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.ChatUser {
+  position: absolute;
+  top: 100%;
+  right: 100%;
+  background-color: #fff;
+  border-radius: 4px;
+  padding: 20px;
+  width: 500px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.ChatUser-search {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.ChatUser-search input {
+  font-family: inherit;
+  font-size: inherit;
+  padding: 10px 10px;
+  border-radius: 4px;
+  outline: none;
+  width: 100%;
+  border: 1px solid #666;
+}
+
+.ChatUser-contains-chats {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  height: 250px;
+  overflow-y: auto;
+}

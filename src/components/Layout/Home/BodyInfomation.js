@@ -10,6 +10,9 @@ import { selectNguoiDung } from "./../../../store/nguoi-dung-slice";
 import { selectStomp } from "../../../store/stomp-slice";
 import ReportModal from "../../UI/ReportModal";
 import { updateModal } from "../../../store/modal-slice";
+import { luuChatUser } from "./../../../api/chat-user-api";
+import { addChatUser } from "../../../store/chat-user-slice";
+import { addChatUI } from "../../../store/chat-ui-slice";
 
 function BodyInfomation(props) {
   const [openModal, setOpenModal] = useState(false);
@@ -33,12 +36,23 @@ function BodyInfomation(props) {
   const nguoiDung = useSelector(selectNguoiDung);
   const stomp = useSelector(selectStomp);
 
-  const handleChieuMo = () => {
+  const handleChieuMo = async () => {
     if (!nguoiDung) {
       window.location.href = "/sign_in";
     } else {
-      stomp.send("/app/" + nguoiDung.id + "/" + user.id);
-      dispatch(updateModal(modal));
+      // stomp.send("/app/chat/" + nguoiDung.id + "/" + user.id, {}, message);
+      // dispatch(updateModal(modal));
+      const chatUser = {
+        owner: { id: nguoiDung.id },
+        to: { id: user.id },
+        isRead: true,
+      };
+      const response = await luuChatUser(chatUser);
+      if (response.id) {
+        dispatch(addChatUser(response));
+        dispatch(addChatUI(response));
+      } else {
+      }
     }
   };
   return (

@@ -5,7 +5,7 @@ import Login from "./components/Layout/Login/Login";
 import SignUp from "./components/Layout/SignUp/SignUp";
 import User from "./components/Layout/User/User";
 import Modal from "./components/UI/Modal";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { capNhatNguoiDungRD } from "./store/nguoi-dung-slice";
 import Project from "./components/Layout/Project/Project";
@@ -14,8 +14,11 @@ import { updateStomp } from "./store/stomp-slice";
 import SockJS from "sockjs-client";
 import { updateHasNew } from "./store/notification-slice";
 import { capNhapNguoiDung } from "./api/nguoi-dung-api";
+import ContainChatForm from "./components/UI/ContainChatForm";
+import { selectHasNewChat, setHasNewChat } from "./store/chat-user-slice";
 
 function App() {
+  const hasNewChat = useSelector(selectHasNewChat);
   const dispatch = useDispatch();
   let stomp = null;
 
@@ -45,6 +48,10 @@ function App() {
           dispatch(updateHasNew(true));
           capNhat(message.body);
         });
+
+        stomp.subscribe("/topic/chat/" + user.id, (message) => {
+          dispatch(setHasNewChat({ ...hasNewChat }));
+        });
       });
 
       dispatch(capNhatNguoiDungRD(user));
@@ -64,6 +71,7 @@ function App() {
       </Routes>
 
       <Modal />
+      <ContainChatForm />
     </div>
   );
 }

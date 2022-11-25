@@ -1,0 +1,7 @@
+.Contain-chats {
+  position: fixed;
+  display: flex;
+  gap: 20px;
+  bottom: 20px;
+  right: 120px;
+}

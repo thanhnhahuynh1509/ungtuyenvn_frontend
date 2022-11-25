@@ -12,6 +12,7 @@ import {
   updateHasNew,
 } from "./../../../store/notification-slice";
 import ModalBig from "../../UI/ModelBig";
+import ChatUser from "../../UI/ChatUser";
 
 function Header(props) {
   const navigate = useNavigate();
@@ -21,6 +22,7 @@ function Header(props) {
   const [city, setCity] = useState("0");
   const [position, setPosition] = useState("0");
   const [keyword, setKeyword] = useState("");
+  const [isOpenChat, setIsOpenChat] = useState(false);
   const [showNotification, setShowNotification] = useState(false);
   const dispatch = useDispatch();
 
@@ -136,6 +138,34 @@ function Header(props) {
               )}
               {nguoiDung && (
                 <div className="Header-user">
+                  <div className="Header-message">
+                    <button
+                      className="button button-blue"
+                      style={{ position: "relative" }}
+                      onClick={() => setIsOpenChat(!isOpenChat)}
+                    >
+                      <i className="fa-solid fa-message"></i>
+
+                      {hasNewNotification && (
+                        <i
+                          style={{
+                            position: "absolute",
+                            top: "-5px",
+                            right: "-5px",
+                            color: "var(--primary-color)",
+                            backgroundColor: "#fff",
+                            borderRadius: "50%",
+                          }}
+                          className="fa-solid fa-circle-info"
+                        ></i>
+                      )}
+                    </button>
+
+                    <ChatUser
+                      style={{ display: isOpenChat ? "block" : "none" }}
+                    />
+                  </div>
+
                   <div className="Header-message">
                     <button
                       className="button button-blue"

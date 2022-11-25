@@ -71,6 +71,10 @@
   background-color: #fff;
 }
 
+.Header-message {
+  position: relative;
+}
+
 .Header-message .button {
   padding: 8px 20px;
 }

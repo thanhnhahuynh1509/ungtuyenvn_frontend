@@ -1,0 +1,72 @@
+.ChatForm {
+  width: 300px;
+  height: 450px;
+  overflow: hidden;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+}
+
+.ChatForm-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+  padding: 10px;
+}
+
+.header-information {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.header-information img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.ChatForm-content {
+  flex: 1;
+  padding: 10px;
+  overflow: auto;
+}
+
+.ChatForm-form {
+  display: flex;
+  padding: 10px;
+  gap: 10px;
+}
+
+.ChatForm-form input {
+  border: 1px solid #666;
+  outline: none;
+  width: 100%;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.ChatContent {
+  padding: 10px;
+  border-radius: 4px;
+  background-color: rgb(204, 222, 244);
+  margin: 10px 0px;
+}
+
+.owner {
+  background-color: rgb(240, 240, 240) !important;
+}
+
+.ChatContent-content {
+  font-size: 15px;
+  color: #333;
+}
+
+.ChatContent-date {
+  font-size: 12px;
+  color: #666;
+}
